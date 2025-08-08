@@ -1,6 +1,6 @@
 # Shopping Kart
 
-Una aplicación moderna de e-commerce desarrollada con Next.js 15, React 19 y TypeScript, que ofrece una experiencia de compra optimizada con funcionalidades avanzadas como optimización de presupuesto y animaciones fluidas.
+Una aplicación moderna desarrollada con Next.js 15, React 19 y TypeScript, con funcionalidades avanzadas como optimización de presupuesto y animaciones fluidas.
 
 ## Tabla de Contenidos
 
@@ -114,11 +114,6 @@ cd shopping-kart
 2. **Instalar dependencias**
 ```bash
 npm install
-```
-
-3. **Configurar variables de entorno** (si es necesario)
-```bash
-cp .env.example .env.local
 ```
 
 4. **Iniciar el servidor de desarrollo**
