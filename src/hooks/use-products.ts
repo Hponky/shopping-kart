@@ -11,8 +11,7 @@ export function useProducts() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        // Simulando datos para el showcase
-        const mockProducts: ProductShowcaseItem[] = [
+        const mockProducts = [
           {
             id: 1,
             name: "MacBook Pro 16\" M3 Max",
@@ -47,7 +46,7 @@ export function useProducts() {
         
         setProducts(mockProducts);
         setLoading(false);
-      } catch (err) {
+      } catch {
         setError('Error al cargar productos');
         setLoading(false);
       }

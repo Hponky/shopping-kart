@@ -7,7 +7,7 @@ export async function GET() {
   try {
     const cart = await getCart();
     return NextResponse.json(cart);
-  } catch (error) {
+  } catch {
     return NextResponse.json(
       { error: 'Failed to get cart' },
       { status: 500 }
@@ -20,7 +20,7 @@ export async function POST(request: NextRequest) {
     const product = await request.json();
     const cart = await addProductToCart(product);
     return NextResponse.json(cart);
-  } catch (error) {
+  } catch {
     return NextResponse.json(
       { error: 'Failed to add product to cart' },
       { status: 500 }
@@ -41,7 +41,7 @@ export async function PATCH(request: NextRequest) {
     
     const cart = await inMemoryCartRepository.updateQuantity(productId, quantity);
     return NextResponse.json(cart);
-  } catch (error) {
+  } catch {
     return NextResponse.json(
       { error: 'Failed to update quantity' },
       { status: 500 }
@@ -53,13 +53,11 @@ export async function DELETE(request: NextRequest) {
   try {
     const body = await request.json();
     
-    // Si se solicita limpiar todo el carrito
     if (body.clearAll === true) {
       const cart = await inMemoryCartRepository.clearCart();
       return NextResponse.json(cart);
     }
     
-    // Si se solicita eliminar un producto específico
     const { productId } = body;
     
     if (typeof productId !== 'number') {
@@ -71,7 +69,7 @@ export async function DELETE(request: NextRequest) {
     
     const cart = await inMemoryCartRepository.removeProduct(productId);
     return NextResponse.json(cart);
-  } catch (error) {
+  } catch {
     return NextResponse.json(
       { error: 'Failed to remove product or clear cart' },
       { status: 500 }

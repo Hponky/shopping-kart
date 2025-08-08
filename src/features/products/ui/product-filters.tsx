@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Filter, X, Search, ChevronDown } from "lucide-react";
-import { ProductFilters, ProductCategory, ProductBrand, SortOption } from "@/features/products/domain/product";
+import { type ProductFilters, ProductCategory, ProductBrand, SortOption } from "@/features/products/domain/product";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
@@ -16,10 +16,10 @@ interface ProductFiltersProps {
 }
 
 const categories: { value: ProductCategory; label: string }[] = [
-  { value: 'electronics', label: 'Electrónicos' },
+  { value: 'laptops', label: 'Laptops' },
   { value: 'accessories', label: 'Accesorios' },
   { value: 'gaming', label: 'Gaming' },
-  { value: 'office', label: 'Oficina' }
+  { value: 'audio', label: 'Audio' }
 ];
 
 const brands: { value: ProductBrand; label: string }[] = [
@@ -42,7 +42,7 @@ export function ProductFilters({ filters, onFiltersChange, sortBy, onSortChange,
   const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState(filters.searchTerm || '');
 
-  const updateFilter = (key: keyof ProductFilters, value: any) => {
+  const updateFilter = (key: keyof ProductFilters, value: ProductFilters[keyof ProductFilters]) => {
     onFiltersChange({ ...filters, [key]: value });
   };
 
@@ -193,10 +193,10 @@ export function ProductFilters({ filters, onFiltersChange, sortBy, onSortChange,
                     {[4, 3, 2, 1].map(rating => (
                       <Button
                         key={rating}
-                        variant={filters.minRating === rating ? 'primary' : 'outline'}
+                        variant={filters.rating === rating ? 'primary' : 'outline'}
                         size="sm"
-                        onClick={() => updateFilter('minRating', 
-                          filters.minRating === rating ? undefined : rating
+                        onClick={() => updateFilter('rating', 
+                          filters.rating === rating ? undefined : rating
                         )}
                       >
                         {rating}+ ⭐
@@ -211,7 +211,7 @@ export function ProductFilters({ filters, onFiltersChange, sortBy, onSortChange,
                     type="checkbox"
                     id="inStock"
                     checked={filters.inStock || false}
-                    onChange={(e) => updateFilter('inStock', e.target.checked || undefined)}
+                    onChange={(e) => updateFilter('inStock', e.target.checked)}
                     className="rounded"
                   />
                   <label htmlFor="inStock" className="text-sm font-medium">

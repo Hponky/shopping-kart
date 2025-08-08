@@ -6,7 +6,6 @@ import { Calculator, ShoppingCart, DollarSign, TrendingUp, X, Loader2 } from 'lu
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { useBudgetOptimizer } from '@/hooks/use-budget-optimizer';
-import { formatPrice } from '@/lib/utils';
 
 interface BudgetOptimizerProps {
   isOpen: boolean;
